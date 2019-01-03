@@ -18,7 +18,7 @@ int Find(int r)
 {
     if(parent[r]==r)
         return r;
-    return parent[r]=Find(parent[r]);
+    return Find(parent[r]);
 }
 
 void initPar(int r)
