@@ -1,25 +1,31 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int ternary_search(int l,int r, int x)
+double ternarySearch()
 {
-    if(r>=l)
-    {
-        int mid1 = l + (r-l)/3;
-        int mid2 = r -  (r-l)/3;
-        if(ar[mid1] == x)
-            return mid1;
-        if(ar[mid2] == x)
-            return mid2;
-        if(x<ar[mid1])
-            return ternary_search(l,mid1-1,x);
-        else if(x>ar[mid2])
-            return ternary_search(mid2+1,r,x);
-        else
-            return ternary_search(mid1+1,mid2-1,x);
+    double left,right;
+    int num=64;
 
+    while(num--)
+    {
+        point fa,la,fc,lc;
+        fa.x=(2*p[1].x + p[2].x)/3.0;
+        fa.y=(2*p[1].y + p[2].y)/3.0;
+        la.x=(p[1].x + 2*p[2].x)/3.0;
+        la.y=(p[1].y + 2*p[2].y)/3.0;
+
+        fc.x=(2*p[3].x + p[4].x)/3.0;
+        fc.y=(2*p[3].y + p[4].y)/3.0;
+        lc.x=(p[3].x + 2*p[4].x)/3.0;
+        lc.y=(p[3].y + 2*p[4].y)/3.0;
+
+        left=dist(fa,fc);
+        right=dist(la,lc);
+
+        if(left>right){p[1]=fa; p[3]=fc;}
+        else{p[2]=la; p[4]=lc;}
     }
-    return -1;
+    return abs(left+right)/2;
 }
 
 int main()
