@@ -19,6 +19,18 @@ void dfs(int u)
     }
 }
 
+void dfs(int u, int p)///without seen flag;
+{
+    for(int i=0;i<adj[u].size();i++)
+    {
+        v=adj[u][i];
+        if(v!=p)
+        {
+            dfs(v,u);
+        }
+    }
+}
+
 int main()
 {
     scanf("%d %d",&n,&e);
@@ -36,5 +48,6 @@ int main()
             dfs(i);
         }
     }
+    dfs(1,0)///mainly for a tree;
     return 0;
 }
