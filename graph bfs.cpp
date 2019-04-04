@@ -1,15 +1,11 @@
 #include <bits/stdc++.h>
-
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 using namespace std;
 
-vector<int> adj[100];
+vector<int> graph[100];
 int visited[100]={0};
 int level[100];
 
-void addEdge(int v, int w)
-{
-    adj[v].push_back(w);
-}
 
 void bfs(int s, int n)
 {
@@ -24,11 +20,11 @@ void bfs(int s, int n)
     while(!Q.empty())
     {
         int u = Q.front();
-        for(int i=0; i<adj[u].size(); i++)
+        for(int i=0; i<graph[u].size(); i++)
         {
-            if(visited[adj[u][i]]==0)
+            if(visited[graph[u][i]]==0)
             {
-                int v = adj[u][i];
+                int v = graph[u][i];
                 level[v] = level[u]+1;
                 visited[v] = 1;
                 Q.push(v);
@@ -40,6 +36,6 @@ void bfs(int s, int n)
 
 int main()
 {
-    bfs(1,5);
+    IOS
     return 0;
 }
