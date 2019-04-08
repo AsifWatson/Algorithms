@@ -25,20 +25,19 @@ void bfs(int src)
 
 	while(!q.empty())
 	{
-		int u=q.front();
-		q.pop();
-
-		for(int i=0;i<graph[u].size();i++)
-		{
-            int v=graph[u][i];
-            if(!visited[v])
+	    int u=q.front();
+            q.pop();
+	    for(int i=0;i<graph[u].size();i++)
             {
-                if(color[u]==1)color[v]=0;
-                if(color[u]==0)color[v]=1;
-                visited[v]=1;
-                q.push(v);
+	        int v=graph[u][i];
+	        if(!visited[v])
+	        {
+		    if(color[u]==1)color[v]=0;
+		    if(color[u]==0)color[v]=1;
+		    visited[v]=1;
+		    q.push(v);
+	        }
             }
-		}
 	}
 }
 
