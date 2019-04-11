@@ -19,7 +19,7 @@ int findDigit(int n,int base)
     return floor(digit)+1;
 }
 
-int sum[1000005];
+double sum[1000005];
 
 int main()
 {
