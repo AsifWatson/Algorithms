@@ -4,7 +4,7 @@ using namespace std;
 #define mx 100001
 
 int arr[mx];
-int tree[mx*3];
+int tree[mx*4];
 
 void build(int node,int st,int ed)
 {
