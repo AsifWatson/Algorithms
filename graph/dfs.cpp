@@ -23,7 +23,7 @@ void dfs(int u, int p)///without seen flag;
 {
     for(int i=0;i<adj[u].size();i++)
     {
-        v=adj[u][i];
+        int v=adj[u][i];
         if(v!=p)
         {
             dfs(v,u);
