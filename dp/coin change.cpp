@@ -18,7 +18,7 @@ int call(int i,int amount)
     if(amount-coin[i]>=0) ret1=call(i,amount-coin[i]);
     ret2=call(i+1,amount);
 
-    dp[i][amount]=ret1|ret2;
+    dp[i][amount]=ret1+ret2;
 
     return dp[i][amount];
 
