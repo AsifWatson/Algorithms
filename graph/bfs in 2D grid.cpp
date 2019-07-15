@@ -1,12 +1,12 @@
 ///O(V+E)
 
-#inlude "bits/std++.h"
+#include "bits/stdc++.h"
 using namespace std;
 
 int fx[]={1,-1,0,0};
-int fx[]={0,0,1,-1};
+int fy[]={0,0,1,-1};
 
-int visited[1005],grid[1005][1005],dest[1005][1005],row,col;
+int visited[1005][1005],grid[1005][1005],dest[1005][1005],row,col;
 
 void bfs(int x,int y)
 {
@@ -14,11 +14,11 @@ void bfs(int x,int y)
     visited[x][y]=1;
 
     queue<pair<int,int> >q;
-    q.push({source_x,source_y});
+    q.push({x,y});
 
     while(!q.empty())
     {
-        pair<int,int> top=q.top();
+        pair<int,int> top=q.front();
         q.pop();
         for(int i=0;i<4;i++)
         {
