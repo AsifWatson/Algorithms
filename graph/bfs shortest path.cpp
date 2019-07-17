@@ -3,12 +3,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> adj[8];
+vector<int> graph[8];
 
 void add_edge(int src, int dest)
 {
-	adj[src].push_back(dest);
-	adj[dest].push_back(src);
+	graph[src].push_back(dest);
+	graph[dest].push_back(src);
 }
 
 bool BFS(int src, int dest, int v,int pred[], int dist[])
@@ -31,17 +31,17 @@ bool BFS(int src, int dest, int v,int pred[], int dist[])
     {
 		int u=lst.front();
 		lst.pop_front();
-		for(int i=0;i<adj[u].size();i++)
+		for(int i=0;i<graph[u].size();i++)
 		{
-			if(!visited[adj[u][i]])
+			if(!visited[graph[u][i]])
 			{
-				visited[adj[u][i]]=true;
-				dist[adj[u][i]]=dist[u]+1;
-				pred[adj[u][i]]=u;
+				visited[graph[u][i]]=true;
+				dist[graph[u][i]]=dist[u]+1;
+				pred[graph[u][i]]=u;
 
-				lst.push_back(adj[u][i]);
+				lst.push_back(graph[u][i]);
 
-				if(adj[u][i]==dest)
+				if(graph[u][i]==dest)
 				return true;
 			}
 		}
