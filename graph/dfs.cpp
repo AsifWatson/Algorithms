@@ -1,29 +1,30 @@
+/// O(V+E)
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> adj[128];
-bool seen[128];
-int n, e;
+vector<int> graph[100010];
+bool visited[100010];
+int nodes,edges;
 
 void dfs(int u)
 {
-    seen[u]=true;
+    visited[u]=true;
     printf("%d ",u);
-    for(int i=0;i<adj[u].size();i++)
+    for(int i=0;i<graph[u].size();i++)
     {
-        int v=adj[u][i];
-        if(!seen[v])
+        int v=graph[u][i];
+        if(!visited[v])
         {
             dfs(v);
         }
     }
 }
 
-void dfs(int u, int p)///without seen flag;
+void dfs(int u,int p)///without visited flag;
 {
-    for(int i=0;i<adj[u].size();i++)
+    for(int i=0;i<graph[u].size();i++)
     {
-        int v=adj[u][i];
+        v=graph[u][i];
         if(v!=p)
         {
             dfs(v,u);
@@ -33,20 +34,17 @@ void dfs(int u, int p)///without seen flag;
 
 int main()
 {
-    scanf("%d %d",&n,&e);
-    for(int i=0;i<e;i++)
+    scanf("%d %d",&nodes,&edges);
+    for(int i=0;i<edges;i++)
     {
-       int u, v;
-       cin >>u>>v;
-       adj[u].push_back(v);
-       adj[v].push_back(u);
+       int u,v;
+       cin>>u>>v;
+       graph[u].push_back(v);
+       graph[v].push_back(u);
     }
-    for(int i=1;i<=n;i++)
+    for(int i=1;i<=nodes;i++)
     {
-        if(!seen[i])
-        {
-            dfs(i);
-        }
+        if(!visited[i])dfs(i);
     }
     dfs(1,0);/// mainly for a tree;
     return 0;
