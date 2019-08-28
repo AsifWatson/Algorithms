@@ -11,7 +11,9 @@ void seive(int n)
     mark[1]=1;
 
     for(i=4;i<=n;i+=2)
+    {
         mark[i]=1;
+    }
 
     Prime[nPrime++]=2;
 
@@ -20,12 +22,9 @@ void seive(int n)
         if(!mark[i])
         {
             Prime[nPrime++]=i;
-            if(i<=limit)
+            for(j=i*i;j<=n;j+=i*2)
             {
-                for(j=i*i;j<=n;j+=i*2)
-                {
-                    mark[j]=1;
-                }
+                mark[j]=1;
             }
         }
     }
