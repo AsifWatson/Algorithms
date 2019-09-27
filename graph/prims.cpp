@@ -14,7 +14,7 @@ struct data
     }
 };
 
-int mstPrims(int src, int n)
+int prims(int src, int n)
 {
     memset(visited, 0, sizeof(visited));
 
@@ -66,7 +66,7 @@ int main()
         cost[v].push_back(w);
     }
 
-    cout<<endl<<"Total minimum cost : "<<mstPrims(1, n)<<endl;
+    cout<<endl<<"Total minimum cost : "<<prims(1, n)<<endl;
 
     return  0;
 }
