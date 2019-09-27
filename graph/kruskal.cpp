@@ -28,7 +28,7 @@ void initPar(int r)
         parent[i]=i;
     }
 }
-void kruskals_Algorithm(int n)
+void kruskal(int n)
 {
     sort(graph.begin(), graph.end(), compare);
     initPar(n);
@@ -67,7 +67,7 @@ int main()
         graph.push_back(input);
     }
 
-    kruskals_Algorithm(n);
+    kruskal(n);
 
     cout<<"MST Value : "<<mstValue<<endl;
     for(int i=0 ; i<(int)output.size() ; i++)
