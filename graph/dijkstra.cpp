@@ -1,15 +1,18 @@
-#include <bits/stdc++.h>
+// O(V+E)
+
+#include "bits/stdc++.h"
 #define mx 20010
 
 using namespace std;
 
-vector<int> adj[mx], cost[mx];
-const int infinity = 1000000000;
+vector<int> graph[mx], cost[mx];
+const int infinity = 2000000000;
+int n,e;
 
 struct data
 {
     int node, weight;
-    bool operator < ( const data& p ) const
+    bool operator < (const data& p) const
     {
         return weight > p.weight;
     }
@@ -17,43 +20,61 @@ struct data
 
 int dijkstra(int source, int destination)
 {
-    int d[mx];
-    for(int i=0; i<=mx; i++)
-        d[i] = infinity;
+    int dist[mx],parent[mx];
+    for(int i=0; i<mx; i++)
+    {
+        dist[i] = infinity;
+        parent[i] = -1;
+    }
 
     priority_queue<data> pq;
+
     data u, v;
-    u.node = source, u.weight = 0;
+    u.node=source, u.weight=0;
     pq.push(u);
-    d[source] = 0;
+    dist[source]=0;
 
     while(!pq.empty())
     {
         u = pq.top();
         pq.pop();
-        int ucost = d[u.node];
 
-        for(int i=0; i<adj[u.node].size(); i++)
+        int ucost = dist[u.node];
+
+        for(int i=0; i<graph[u.node].size(); i++)
         {
-            v.node = adj[u.node][i], v.weight = cost[u.node][i] + ucost;
-            // relaxing :)
-            if(d[v.node] > v.weight)
+            v.node=graph[u.node][i], v.weight=cost[u.node][i]+ucost;
+            if(dist[v.node] > v.weight)
             {
-                d[v.node] = v.weight;
-                pq.push( v );
+                dist[v.node]=v.weight;
+                parent[v.node]=u.node;
+                pq.push(v);
             }
         }
     }
-    for(int i=0;i<8;i++)
+
+    cout<<dist[destination]<<endl;
+
+    vector<int> route;
+    int par=destination;
+    route.push_back(par);
+
+    while(true)
     {
-        printf("d[%d] = %d\n",i+1,d[i+1]);
+        par=parent[par];
+        route.push_back(par);
+        if(par==source)break;
     }
-    return d[destination];
+
+    reverse(route.begin(),route.end());
+    for(auto r : route)cout<<r<<" ";
+    cout<<endl;
+    //return dist[destination];
 }
 
 int main()
 {
-    int n, e, src, dest;
+    int src, dest;
     while(scanf("%d %d", &n, &e)==2)
     {
         while(e--)
@@ -61,14 +82,13 @@ int main()
             int u, v, w;
             cin>>u>>v>>w;
 
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+            graph[u].push_back(v);
+            graph[v].push_back(u);
             cost[u].push_back(w);
             cost[v].push_back(w);
         }
         cin>>src>>dest;
-        int ans = dijkstra(src, dest);
-        cout<<ans<<endl;
+        dijkstra(src, dest);
     }
     return 0;
 }
