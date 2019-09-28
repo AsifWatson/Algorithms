@@ -53,7 +53,7 @@ int dijkstra(int source, int destination)
         }
     }
 
-    cout<<dist[destination]<<endl;
+    cout<<"COST : "<<dist[destination]<<endl;
 
     vector<int> route;
     int par=destination;
@@ -67,6 +67,8 @@ int dijkstra(int source, int destination)
     }
 
     reverse(route.begin(),route.end());
+
+    cout<<"PATH : ";
     for(auto r : route)cout<<r<<" ";
     cout<<endl;
     //return dist[destination];
