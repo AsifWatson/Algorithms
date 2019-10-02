@@ -36,11 +36,6 @@ void dfs(int rootNode)
     {
         int thisNode=graph[rootNode][i];
 
-        if(visited[thisNode] && thisNode!=parent[rootNode])  // checks for back edge
-        {
-            lowestTime[rootNode]=min(lowestTime[rootNode],discoverTime[thisNode]);
-        }
-
         if(!visited[thisNode])
         {
             child++;
@@ -53,6 +48,13 @@ void dfs(int rootNode)
             if(parent[rootNode]!=-1 && lowestTime[thisNode]>=discoverTime[rootNode])points.insert(rootNode);
 
             lowestTime[rootNode]=min(lowestTime[rootNode],lowestTime[thisNode]);
+        }
+
+        // visited[thisNode]=true ; thisNode will be visited anyway.
+
+        if(visited[thisNode] && thisNode!=parent[rootNode])  // if true there is a back edge
+        {
+            lowestTime[rootNode]=min(lowestTime[rootNode],discoverTime[thisNode]);
         }
     }
 
