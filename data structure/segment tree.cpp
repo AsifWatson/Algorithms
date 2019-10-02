@@ -1,64 +1,71 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define mx 100001
+#define maxn 100005
 
-int arr[mx];
-int tree[4*mx];
+int arr[maxn];
+int tree[4*maxn];
 
-void build(int node,int st,int ed)
+void build(int node, int L, int R)
 {
-    if(st==ed)
+    if(L==R)
     {
-        tree[node]=arr[st];
+        tree[node]=arr[L];
         return;
     }
+
     int leftNode=node*2;
     int rightNode=node*2+1;
-    int mid=(st+ed)/2;
-    build(leftNode,st,mid);
-    build(rightNode,mid+1,ed);
+
+    int mid=(L+R)/2;
+
+    build(leftNode,L,mid);
+    build(rightNode,mid+1,R);
+
     tree[node]=tree[leftNode]+tree[rightNode];
 }
 
-int query(int node,int st,int ed,int i,int j)
+int query(int node, int L, int R, int l, int r)
 {
-    if(i>ed || j<st)
-    {
-        return 0;
-    }
-    if(st>=i && ed<=j)
-    {
-        return tree[node];
-    }
+    if(l>R || r<L)return 0;
+    if(L>=l && R<=r)return tree[node];
+
     int leftNode=node*2;
     int rightNode=node*2+1;
-    int mid=(st+ed)/2;
-    int p1=query(leftNode,st,mid,i,j);
-    int p2=query(rightNode,mid+1,ed,i,j);
+
+    int mid=(L+R)/2;
+
+    int p1=query(leftNode,L,mid,l,r);
+    int p2=query(rightNode,mid+1,R,l,r);
+
     return p1+p2;
 }
-void update(int node,int st,int ed,int i,int newValue)
+
+void update(int node, int L, int R, int pos, int newValue)
 {
-    if(i>ed || i<st)
-    {
-        return;
-    }
-    if(st>=i && ed<=i)
+    if(pos>R || pos<L)return;
+    if(L==pos && R==pos)
     {
         tree[node]=newValue;
         return;
     }
+
     int leftNode=node*2;
     int rightNode=node*2+1;
-    int mid=(st+ed)/2;
-    update(leftNode,st,mid,i,newValue);
-    update(rightNode,mid+1,ed,i,newValue);
+
+    int mid=(L+R)/2;
+
+    update(leftNode,L,mid,pos,newValue);
+    update(rightNode,mid+1,R,pos,newValue);
+
     tree[node]=tree[leftNode]+tree[rightNode];
 }
 
-
 int main()
 {
+    build(1,1,n);
+    update(1,1,n,pos,newValue);
+    query(1,1,n,l,r);
+
     return 0;
 }
