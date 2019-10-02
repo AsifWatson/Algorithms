@@ -36,7 +36,7 @@ void dfs(int rootNode)
     {
         int thisNode=graph[rootNode][i];
 
-        if(visited[thisNode] && thisNode!=parent[rootNode])
+        if(visited[thisNode] && thisNode!=parent[rootNode])  // checks for back edge
         {
             lowestTime[rootNode]=min(lowestTime[rootNode],discoverTime[thisNode]);
         }
