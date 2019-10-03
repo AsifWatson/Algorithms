@@ -50,9 +50,8 @@ void dfs(int rootNode)
             lowestTime[rootNode]=min(lowestTime[rootNode],lowestTime[thisNode]);
         }
 
-        // visited[thisNode]=true ; thisNode will be visited anyway.
-
-        if(visited[thisNode] && thisNode!=parent[rootNode])  // if true there is a back edge
+        // checking for back edge only
+        else if(visited[thisNode] && thisNode!=parent[rootNode])  // if true there is a back edge
         {
             lowestTime[rootNode]=min(lowestTime[rootNode],discoverTime[thisNode]);
         }
