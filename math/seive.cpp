@@ -30,9 +30,9 @@ const int n=1000000;
 int mark[n+5],prime[n+5],nprime;
 void seive()
 {
-    for(int i=0; i<=n; i++)mark[i]=1;  /// initializing mark[i]==1 => prime;
+    for(int i=2; i<=n; i++)mark[i]=1;  /// initializing mark[i]==1 => prime;
 
-    for(int i=2; i<=n; i+=2)mark[i]=0;
+    for(int i=4; i<=n; i+=2)mark[i]=0;
 
     prime[nprime++]=2;
 
