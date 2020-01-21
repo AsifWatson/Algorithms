@@ -36,12 +36,12 @@ int query(int node, int b, int e, int i, int j, int carry = 0)
 
     if(b >= i && e <= j) return tree[node].sum + carry * (e - b + 1);
 
-    int Left  = node * 2;
-    int Right = node * 2 + 1;
+    int leftNode  = node * 2;
+    int rightNode = node * 2 + 1;
     int mid = (b + e) / 2;
 
-    int p1 = query(Left, b, mid, i, j, carry + tree[node].prop);
-    int p2 = query(Right, mid + 1, e, i, j, carry + tree[node].prop);
+    int p1 = query(leftNode, b, mid, i, j, carry + tree[node].prop);
+    int p2 = query(rightNode, mid + 1, e, i, j, carry + tree[node].prop);
 
     return p1 + p2;
 }
@@ -56,14 +56,14 @@ void update(int node, int b, int e, int i, int j, long long x)
         return;
     }
 
-    int Left = node * 2;
-    int Right = (node * 2) + 1;
+    int leftNode = node * 2;
+    int rightNode = (node * 2) + 1;
     int mid = (b + e) / 2;
 
-    update(Left, b, mid, i, j, x);
-    update(Right, mid + 1, e, i, j, x);
+    update(leftNode, b, mid, i, j, x);
+    update(rightNode, mid + 1, e, i, j, x);
 
-    tree[node].sum = tree[Left].sum + tree[Right].sum + (e - b + 1) * tree[node].prop;
+    tree[node].sum = tree[leftNode].sum + tree[rightNode].sum + (e - b + 1) * tree[node].prop;
 }
 
 int main()
