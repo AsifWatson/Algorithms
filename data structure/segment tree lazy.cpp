@@ -68,9 +68,18 @@ void update(int node, int b, int e, int i, int j, long long x)
 
 int main()
 {
+
+    int n = 7;
+
+    for(int i = 1; i <= n; ++i){
+            cin >> arr[i];
+    }
+
     build(1, 1, n);
+
     update(1, 1, n, pos1, pos2, addValue);
-    query(1, 1, n, l, r);
+
+    query(1, 1, n, pos1, pos2);
 
     return 0;
 }
