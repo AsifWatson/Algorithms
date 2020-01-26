@@ -1,0 +1,9 @@
+1. Miller Robin
+2. Inverse Mod
+3. Euclid (All)
+4. Probability
+5. Euiler Totient
+6. fft
+7. Gauss elimination
+8. CRT
+9. Matrix Exponentiation

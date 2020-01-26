@@ -1,0 +1,8 @@
+1. 0-1 bfs
+2. flood fill (dfs)
+3. Bellman ford
+4. Strongly connected component
+5. Stable marriage
+6. Minimum vertex cover
+7. 2 Sat
+8. Max Bipartite matching
