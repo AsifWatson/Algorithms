@@ -1,0 +1,5 @@
+1. Hash Table
+2. Suffix Array
+3. Sparse Table
+4. PBDS
+5. BIT
