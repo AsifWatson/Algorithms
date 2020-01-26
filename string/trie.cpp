@@ -1,85 +1,66 @@
 #include<bits/stdc++.h>
+#define N 300005
 using namespace std;
 
-struct node
-{
-    bool endmark;
-    node* next[26 + 1];
-    node()
-    {
-        endmark = false;
-        for (int i = 0; i < 26; i++)
-            next[i] = NULL;
-    }
-} * root;
+int ch[N][10], ss=0, isWord[N];
+///int ch[N][26], ss=0, isWord[N];
 
-void insert(char* str, int len)
+void inl()
 {
-    node* curr = root;
-    for (int i = 0; i < len; i++)
-    {
-        int id = str[i] - 'a';
-        if (curr->next[id] == NULL)
-        {
-            curr->next[id] = new node();
-        }
-        curr = curr->next[id];
-    }
-    curr->endmark = true;
+    memset(ch, 0, sizeof ch);
+    memset(isWord, 0, sizeof isWord);
+    ss=0;
 }
 
-bool search(char* str, int len)
+void insertt(string s)
 {
-    node* curr = root;
-    for (int i = 0; i < len; i++)
+    int u=0;
+    for(int i=0; i<s.size(); i++)
     {
-        int id = str[i] - 'a';
-        if (curr->next[id] == NULL)
+        int c=s[i]-'0';
+        ///int c=s[i]-'a';
+        if(!ch[u][c])
         {
-            return false;
+            ch[u][c]=++ss;
         }
-        curr = curr->next[id];
+        u=ch[u][c];
     }
-    return curr->endmark;
+    isWord[u]=1;
+    ///isWord[u]++;
 }
 
-void del(node* cur)
+bool searchh(string s)/// whether the string is present or not.
 {
-    for (int i = 0; i < 26; i++)
+    int u=0;
+    for(int i=0; i<s.size(); i++)
     {
-        if (cur->next[i])
-        {
-            del(cur->next[i]);
-        }
+        int c=s[i]-'0';
+        ///int c=s[i]-'a';
+        u=ch[u][c];
     }
-    delete (cur);
+    if(isWord[u]==1)
+    {
+        return true;
+    }
+    return false;
+}
+
+int searchh(string s) /// returns how much times the string is present;
+{
+    int u=0;
+    for(int i=0; i<s.size(); i++)
+    {
+        int c=s[i]-'0';
+        u=ch[u][c];
+    }
+    if(isWord[u]>0)
+    {
+        return isWord[u];
+    }
+    return 0;
 }
 
 int main()
 {
-
-    puts("ENTER NUMBER OF WORDS");
-    root = new node();
-    int num_word;
-    cin >> num_word;
-    for (int i = 1; i <= num_word; i++)
-    {
-        char str[50];
-        scanf("%s", str);
-        insert(str, strlen(str));
-    }
-    puts("ENTER NUMBER OF QUERY";);
-    int query;
-    cin >> query;
-    for (int i = 1; i <= query; i++)
-    {
-        char str[50];
-        scanf("%s", str);
-        if (search(str, strlen(str)))
-            puts("FOUND");
-        else
-            puts("NOT FOUND");
-    }
-    del(root);
     return 0;
 }
